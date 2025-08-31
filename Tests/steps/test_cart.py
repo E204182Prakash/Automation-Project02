@@ -3,19 +3,45 @@ from Pages.inventory_page import InventoryPage
 from Pages.cart_page import CartPage
 from dotenv import load_dotenv
 import os
+import pytest
+from pytest_bdd import scenarios, given, when, then
+
+scenarios('../features/cart.feature')
+
 
 load_dotenv(override=True)
 USERNAME = os.getenv("SAUCE_USERNAME")
 PASSWORD = os.getenv("SAUCE_PASSWORD")
 
-def test_add_to_cart(browser_page):
-    login = LoginPage(browser_page)
-    login.load()
-    login.login(USERNAME, PASSWORD)
+@pytest.fixture
+def login_page(browser_page):
+    return LoginPage(browser_page)
 
-    inventory = InventoryPage(browser_page)
-    inventory.add_to_cart()
-    inventory.go_to_cart()
+@pytest.fixture
+def inventory_page(browser_page):
+    return InventoryPage(browser_page)
 
-    cart = CartPage(browser_page)
-    assert cart.has_items()
+@pytest.fixture
+def cart_page(browser_page):
+    return CartPage(browser_page)
+
+
+@given("I am logged in with valid credentials")
+def step_login(login_page):
+    login_page.load()
+    login_page.login(USERNAME, PASSWORD)
+
+
+@when("the user add a product to the cart")
+def step_add_to_cart(inventory_page):
+    inventory_page.add_to_cart()
+
+
+@when("the user navigate to the cart page")
+def step_go_to_cart(inventory_page):
+    inventory_page.go_to_cart()
+
+
+@then("the user should see the product in the cart")
+def step_verify_cart(cart_page):
+    assert cart_page.has_items(), "Cart is empty!"
