@@ -8,7 +8,6 @@ from pytest_bdd import scenarios, given, when, then
 
 scenarios('../features/cart.feature')
 
-
 load_dotenv(override=True)
 USERNAME = os.getenv("SAUCE_USERNAME")
 PASSWORD = os.getenv("SAUCE_PASSWORD")
@@ -45,3 +44,14 @@ def step_go_to_cart(inventory_page):
 @then("the user should see the product in the cart")
 def step_verify_cart(cart_page):
     assert cart_page.has_items(), "Cart is empty!"
+
+
+@when("the user removes the item from the cart")
+def step_remove_item(cart_page):
+    cart_page.open_cart()
+    cart_page.remove_item()
+
+
+@then("the cart should be empty")
+def step_cart_should_be_empty(cart_page):
+    assert cart_page.is_cart_empty(), "Cart is not empty after removing item!"

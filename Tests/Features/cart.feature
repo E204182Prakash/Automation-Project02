@@ -10,3 +10,8 @@ Feature: Add product to cart
     When the user add a product to the cart
     And the user navigate to the cart page
     Then the user should see the product in the cart
+
+  Scenario: Remove an item from the cart
+    When the user add a product to the cart
+    And the user removes the item from the cart
+    Then the cart should be empty
