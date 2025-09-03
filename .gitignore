@@ -1,5 +1,33 @@
+# ---- Python ----
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+
+# ---- Virtual environments ----
+venv/
+.env/
+.venv/
+env/
+ENV/
+
+# ---- IDE / Editor files ----
+.vscode/
+.idea/
+
+# ---- OS files ----
+.DS_Store
+Thumbs.db
+
+# ---- Test / Report files ----
+report.html
+*.log
+*.pytest_cache/
+.pytest_cache/
+
+# ---- Environment variables ----
 .env
+
+# ---- Playwright ----
+playwright-report/
+test-results/
