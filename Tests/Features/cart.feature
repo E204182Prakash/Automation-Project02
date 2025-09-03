@@ -15,3 +15,9 @@ Feature: Add product to cart
     When the user add a product to the cart
     And the user removes the item from the cart
     Then the cart should be empty
+  
+  Scenario: Proceed to checkout
+    When the user add a product to the cart
+    And the user navigate to the cart page
+    And the user proceeds to checkout
+    Then the checkout page should be displayed

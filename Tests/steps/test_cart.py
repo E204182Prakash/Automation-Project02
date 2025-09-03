@@ -55,3 +55,13 @@ def step_remove_item(cart_page):
 @then("the cart should be empty")
 def step_cart_should_be_empty(cart_page):
     assert cart_page.is_cart_empty(), "Cart is not empty after removing item!"
+
+@when("the user proceeds to checkout")
+def step_proceed_checkout(cart_page):
+    cart_page.open_cart()
+    cart_page.proceed_to_checkout()
+
+
+@then("the checkout page should be displayed")
+def step_checkout_page(cart_page):
+    assert cart_page.is_checkout_page_displayed(), "Checkout page not displayed!"

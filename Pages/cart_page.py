@@ -24,3 +24,6 @@ class CartPage:
 
     def is_cart_empty(self):
         return self.cart_items.count() == 0
+    
+    def is_checkout_page_displayed(self):
+        return self.page.url.endswith("/checkout-step-one.html")
