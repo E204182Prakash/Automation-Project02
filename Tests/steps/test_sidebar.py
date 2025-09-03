@@ -6,15 +6,17 @@ import os
 import pytest
 from pytest_bdd import scenarios, given, when, then
 
-scenarios('../features/sidebar.feature')
+scenarios("../features/sidebar.feature")
 
 load_dotenv(override=True)
 USERNAME = os.getenv("SAUCE_USERNAME")
 PASSWORD = os.getenv("SAUCE_PASSWORD")
 
+
 @pytest.fixture
 def login_page(browser_page):
     return LoginPage(browser_page)
+
 
 @pytest.fixture
 def sidebar_page(browser_page):
@@ -50,4 +52,6 @@ def step_click_logout(sidebar_page):
 @then("the user should be redirected back to the login page")
 def step_verify_logout(browser_page):
     assert "saucedemo.com" in browser_page.url
-    assert "login" in browser_page.url or browser_page.is_visible("input[data-test='login-button']")
+    assert "login" in browser_page.url or browser_page.is_visible(
+        "input[data-test='login-button']"
+    )

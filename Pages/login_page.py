@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 import os
 
+
 class LoginPage:
     def __init__(self, page):
         self.page = page

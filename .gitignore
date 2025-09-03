@@ -31,3 +31,6 @@ report.html
 # ---- Playwright ----
 playwright-report/
 test-results/
+
+.yaml
+.pre-commit-config.yaml

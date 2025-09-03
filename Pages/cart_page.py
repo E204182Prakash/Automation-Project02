@@ -1,5 +1,6 @@
 from playwright.sync_api import Page, expect
 
+
 class CartPage:
     def __init__(self, page: Page):
         self.page = page
@@ -13,7 +14,7 @@ class CartPage:
 
     def proceed_to_checkout(self):
         self.page.click(self.checkout_button)
-    
+
     def open_cart(self):
         self.cart_icon.click()
         expect(self.page.locator(".cart_list")).to_be_visible()
@@ -24,6 +25,6 @@ class CartPage:
 
     def is_cart_empty(self):
         return self.cart_items.count() == 0
-    
+
     def is_checkout_page_displayed(self):
         return self.page.url.endswith("/checkout-step-one.html")

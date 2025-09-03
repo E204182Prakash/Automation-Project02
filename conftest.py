@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 # Load .env once for the whole test run
 load_dotenv(override=True)
 
+
 @pytest.fixture(scope="function")
 def browser_page():
     with sync_playwright() as p:

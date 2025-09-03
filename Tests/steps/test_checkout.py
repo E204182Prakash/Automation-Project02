@@ -7,24 +7,28 @@ import os
 import pytest
 from pytest_bdd import scenarios, given, when, then
 
-scenarios('../features/checkout.feature')
+scenarios("../features/checkout.feature")
 
 
 load_dotenv(override=True)
 USERNAME = os.getenv("SAUCE_USERNAME")
 PASSWORD = os.getenv("SAUCE_PASSWORD")
 
+
 @pytest.fixture
 def login_page(browser_page):
     return LoginPage(browser_page)
+
 
 @pytest.fixture
 def inventory_page(browser_page):
     return InventoryPage(browser_page)
 
+
 @pytest.fixture
 def cart_page(browser_page):
     return CartPage(browser_page)
+
 
 @pytest.fixture
 def checkout_page(browser_page):
